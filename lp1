@@ -1,0 +1,34 @@
+\documentclass{book}
+\usepackage[paperheight=16cm, paperwidth=12cm,% Set the height and 
+width of the paper
+includehead,
+nomarginpar,% We don't want any margin paragraphs
+textwidth=10cm,% Set \textwidth to 10cm
+headheight=25pt,% Set \headheight to 25pt to accommodate the 
+multiline header
+]{geometry}
+\usepackage{fancyhdr}
+\usepackage{datetime2}
+\setlength{\parindent}{20pt}
+\begin{document}
+%\maketitle
+% Set the page style to "fancy"...
+\pagestyle{fancy}
+%... then configure it.
+\fancyhead{} % clear all header fields
+\fancyhead[RO,LE]{\textbf{LaTeX Manual}}
+\fancyfoot{} % clear all footer fields
+\fancyfoot[RE,RO]{\thepage}
+% \fancyfoot[LO,CE]{SIET}
+\fancyfoot[CO,CE]{SIET, Dept of ISE}
+% Some content:
+\section*{Section 1}
+\textbf{First paragraph} of a section which, as you can see, is 
+not indented. This is more text in the paragraph. This is more 
+text in the paragraph.
+\textbf{Second paragraph}. As you can see it is indented. This is 
+more text in the paragraph. This is more text in the paragraph. 
+\section*{Section 2}
+\newpage
+This is page 2.
+\end{document}
