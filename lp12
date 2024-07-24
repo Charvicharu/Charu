@@ -1,0 +1,10 @@
+\documentclass[12pt,a4paper,twoside]{report}
+\begin{document}
+\part{Part name}
+...
+\chapter{Chapter name}
+...
+\section{Section name}
+...
+\subsection{Subsection name}
+\end{document}
