@@ -1,0 +1,17 @@
+\documentclass{article}
+\usepackage{amsmath} % for the equation* environment
+\begin{document}
+Complex Math Equations \\
+\begin{itemize}
+\item Equation 1 is as shown below 
+$$ x = \dfrac{-b \pm \sqrt{b^{2} - 4ac}}{2a}$$ 
+$$ = \dfrac{-2 \pm \sqrt{2^{2} - 4*(-1)*(-8)}}{2*1}$$
+$$ = \dfrac{-2 \pm \sqrt{4+32}}{2*1}$$
+$$ \varphi^{\lambda}_{\sigma} = \sum_{\Pi\in 
+C_{t}}sgn(\Pi){\varphi^{\lambda}_{\sigma}}{\varphi^{\lambda}_{\Pi}} $$
+$$ = \sum_{\tau\in C_{\sigma}t}sgn(\sigma^{-
+1}{\tau}{\sigma}){\varphi^{\lambda}_{\sigma}}{\varphi^{\lambda}_{\sigma^{-
+1}}{\tau}{\sigma}} $$
+$$ = A_{\sigma}{t}{\varphi^{\lambda}_{\sigma}} $$
+\end{itemize}
+\end{document}
