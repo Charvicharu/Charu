@@ -1,0 +1,71 @@
+mysql> CREATE TABLE Employee (
+ -> E_id INT AUTO_INCREMENT PRIMARY KEY,
+ -> E_name VARCHAR(100),
+ -> Age INT,
+ -> Salary DECIMAL(10, 2)
+ -> );
+Query OK, 0 rows affected (0.04 sec)
+mysql> INSERT INTO Employee (E_name, Age, Salary) VALUES
+ -> ('John Doe', 30, 50000.00),
+ -> ('Jane Smith', 28, 60000.00),
+ -> ('Michael Johnson', 35, 75000.00);
+Query OK, 3 rows affected (0.01 sec)
+Records: 3 Duplicates: 0 Warnings: 0
+mysql> SELECT * FROM Employee;
++------+-----------------+------+----------+
+| E_id | E_name | Age | Salary |
++------+-----------------+------+----------+
+| 1 | John Doe | 30 | 50000.00 |
+| 2 | Jane Smith | 28 | 60000.00 |
+| 3 | Michael Johnson | 35 | 75000.00 |
++------+-----------------+------+----------+
+3 rows in set (0.00 sec)
+mysql> CREATE PROCEDURE merge_data()
+ -> BEGIN
+ -> DECLARE v_n_rollcall_id INT;
+ -> DECLARE v_n_rollcall_data VARCHAR(255);
+ -> DECLARE v_exists INT;
+ -> 
+ -> DECLARE done BOOLEAN DEFAULT FALSE;
+ -> 
+ -> -- Declare cursor for N_RollCall table
+ -> DECLARE n_rollcall_cursor CURSOR FOR
+ -> SELECT ID, Data
+ -> FROM N_RollCall;
+ -> 
+ -> -- Declare continue handler for cursor
+ -> DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
+ -> 
+ -> -- Open the cursor
+ -> OPEN n_rollcall_cursor;
+ -> 
+ -> -- Loop through the cursor and merge data into O_RollCall
+ -> n_rollcall_loop: LOOP
+FETCH n_rollcall_cursor INTO v_n_rollcall_id, 
+v_n_rollcall_data;
+ -> 
+ -> IF done THEN
+ -> LEAVE n_rollcall_loop;
+ -> END IF;
+ -> 
+ -> -- Check if data exists in O_RollCall
+ -> SELECT COUNT(*)
+ -> INTO v_exists
+ -> FROM O_RollCall
+ -> WHERE Data = v_n_rollcall_data;
+ -> 
+ -> IF v_exists = 0 THEN
+ -> -- Insert data into O_RollCall
+ -> INSERT INTO O_RollCall (ID, Data)
+ -> VALUES (v_n_rollcall_id, v_n_rollcall_data);
+ -> ELSE
+ -> -- Data already exists, do nothing
+ -> SELECT 'Data with ID ', v_n_rollcall_id, ' already exists 
+in O_RollCall. Skipping...' AS Message;
+ -> END IF;
+ -> END LOOP;
+ -> 
+ -> -- Close the cursor
+ -> CLOSE n_rollcall_cursor;
+ -> END //
+Query OK, 0 rows affected (0.01 sec)
